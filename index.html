@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+  <link rel="stylesheet" href="./css/mdb.min.css" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>Sign in</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <div class="sign-in classic-form mt-5 mx-auto">
+        <h1 class="sign-in__title title">Sign in</h1>
+        <form class="sign-in__form">
+          <!-- * Email input -->
+          <div class="form-outline mb-4">
+            <input type="text" id="login" class="form-control">
+            <label class="form-label" for="login">Login</label>
+            <div class="form-notch">
+              <div class="form-notch-leading" style="width: 9px;"></div>
+              <div class="form-notch-middle" style="width: 40.8px;">
+              </div>
+              <div class="form-notch-trailing"></div>
+            </div>
+          </div>
+
+          <!-- * Password input -->
+          <div class="form-outline mb-4">
+            <input type="password" id="password" class="form-control">
+            <label class="form-label" for="password" style="margin-left: 0px;">Password</label>
+            <div class="form-notch">
+              <div class="form-notch-leading" style="width: 9px;"></div>
+              <div class="form-notch-middle" style="width: 64.8px;"></div>
+              <div class="form-notch-trailing"></div>
+            </div>
+          </div>
+
+          <!-- * Checkbox input -->
+          <div class="d-flex mb-4">
+            <div class="form-check me-4">
+              <input class="form-check-input" type="checkbox" id="btn-showPassword" />
+              <label class="form-check-label" for="btn-showPassword">Show Password</label>
+            </div>
+
+            <a href="" id="redirectLink">Create an account</a>
+          </div>
+
+          <button type="button" id="btn-submit" class="btn btn-primary btn-block">Sign in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/libs/mdb.min.js"></script>
+  <script type="module" src="./js/auth.js"></script>
+</body>
+
+</html>

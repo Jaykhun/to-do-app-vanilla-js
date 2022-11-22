@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
+    <link rel="stylesheet" href="./css/mdb.min.css">
+    <link rel="stylesheet" href="./css/notes.css">
+    <title>Notes</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <!-- * Notes Body -->
+            <div class="notes">
+                <nav class="notes__header d-flex justify-content-between align-items-center shadow-5 rounded-5">
+                    <h3 class="title title-blog">My Notes</h3>
+                    <div class="dropdown dropdown-blog d-flex justify-content-end">
+                        <button class="dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuAvatar"
+                            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <img src="./image/avatar.png" class="rounded-circle" height="25" alt="avatar"
+                                loading="lazy" />
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end" id="userMenu"
+                            aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a class="dropdown-item" id="myProfile">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" id="logout">Logout</a>
+                            </li>
+                            <li id="permissons"></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- * Notes Form -->
+                <section>
+                    <form class="notes-form">
+                        <div class="notes-form__inputs d-flex align-items-lg-center flex-wrap">
+                            <div class="notes-form__type d-flex align-items-center justify-content-between">
+                                <div class="notes-form__date">
+                                    <input type="date">
+                                </div>
+
+                                <div class="form-outline notes-form__text">
+                                    <input type="text" id="text" class="form-control" placeholder="Add your note" />
+                                </div>
+                            </div>
+
+                            <div
+                                class="notes-form__actions d-flex align-items-center justify-content-md-end justify-content-around">
+                                <div class="form-check me-4 notes-form__checkbox">
+                                    <input class="form-check-input" type="checkbox" id="importantBtn" />
+                                    <label class="form-check-label" for="importantBtn">Important</label>
+                                </div>
+
+                                <button class="btn btn-success notes-form__submit" id="addBtn">Save note</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <input type="search" id="search" class="form-control" placeholder="Search" aria-label="Search" />
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/libs/mdb.min.js"></script>
+    <script type="module" src="./js/notes.js"></script>
+</body>
+
+</html>

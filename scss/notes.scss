@@ -1,0 +1,73 @@
+@import "./general/ui";
+
+.notes {
+    &__header {
+        padding: 10px 20px;
+    }
+
+    .notes-form {
+        margin: 20px 0px;
+        &__type {
+            flex: 0 0 50%;
+        }
+        &__actions {
+            flex: 0 0 50%;
+        }
+        &__date {
+            margin-right: 20px;
+            flex: 1 1 auto;
+            color: #4f4f4f;
+            padding: 3px 5px;
+            border-radius: 5px;
+            background-color: transparent;
+            border: 2px solid #bdbdbd;
+            input {
+                border: none;
+                outline: none;
+                color: #858585;
+                &::-webkit-calendar-picker-indicator {
+                    color: #fff;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        &__text {
+            flex: 1 1 auto;
+        }
+
+        &__checkbox {
+            flex: 0 0 10%;
+        }
+    }
+
+    .title-blog {
+        font-weight: 700;
+    }
+
+    .dropdown-blog {
+        flex: 0 0 70%;
+        button {
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .notes {
+        .notes-form {
+            &__inputs {
+                flex-direction: column;
+            }
+
+            &__type {
+                margin-bottom: 20px;
+                align-items: flex-start;
+            }
+        }
+    }
+}
