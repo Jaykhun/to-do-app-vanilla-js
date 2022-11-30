@@ -54,7 +54,7 @@ class Auth {
             getData('users').forEach(user => {
                 if (user.login === login.value.toLowerCase() && user.password === password.value) {
                     signIn = true
-                    cancelFormItemsValue([login, password], showPasswordBtn)
+                    cancelFormItemsValue([login, password], [showPasswordBtn])
                     setData('currentUser', user.login)
                     redirectToPage('notes')
                 }

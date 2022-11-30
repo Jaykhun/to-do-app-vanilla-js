@@ -1,8 +1,8 @@
 import { addClass, removeClass } from "./domUtils.js"
 
-const cancelFormItemsValue = (formItems, checkbox) => {
+const cancelFormItemsValue = (formItems, checkboxItems) => {
     formItems.forEach(item => item.value = '')
-    checkbox ? checkbox.checked = false : null
+    checkboxItems.forEach(item => item.checked = false)
 }
 
 const showPasswordValues = (input) => {

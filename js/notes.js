@@ -5,10 +5,18 @@ import { clearData, getData } from "./module/storageUtils.js"
 
 class Notes {
     constructor() {
+        this.init();
         this.initElements();
         this.logout();
         this.myProfile();
         this.checkUserPermissions();
+    }
+
+    init() {
+        const currentUser = getData('currentUser');
+        if (!currentUser) {
+            document.body.innerHTML = '<p class="text-center my-4 fw-bold">Please first sign in</p>'
+        }
     }
 
     initElements() {

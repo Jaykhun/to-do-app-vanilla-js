@@ -17,26 +17,10 @@
     <div class="wrappper">
         <div class="container">
             <section
-                class="admin d-flex justify-content-between flex-column-reverse flex-md-row align-md-center gap-5 my-3 p-2">
+                class="admin position-relative d-flex justify-content-between flex-column-reverse flex-md-row align-md-center gap-5 my-3 p-2">
                 <div class="admin__users users">
                     <h2 class="title">Users</h2>
-                    <div class="users__block">
-                        <div class="users__item user d-flex justify-content-between align-items-center mb-3 py-1">
-                            <span class="user__name fw-normal text-capitalize fs-5">admin</span>
-                            <div class="user__buttons">
-                                <button class="btn btn-danger btn-sm me-2">delete</button>
-                                <button class="btn btn-info btn-sm">edit</button>
-                            </div>
-                        </div>
-
-                        <div class="users__item user d-flex justify-content-between align-items-center mb-3 py-1">
-                            <span class="user__name fw-normal text-capitalize fs-5">Admin</span>
-                            <div class="user__buttons">
-                                <button class="btn btn-danger btn-sm me-2">delete</button>
-                                <button class="btn btn-info btn-sm">edit</button>
-                            </div>
-                        </div>
-                    </div>
+                    <ul class="users__block list-unstyled" id="userList"></ul>
                 </div>
 
                 <div class="admin__form form">
@@ -45,7 +29,7 @@
                         <form class="form">
                             <!-- * Email input -->
                             <div class="form-outline mb-4">
-                                <input type="text" id="login" class="form-control">
+                                <input type="text" id="login" class="form-control _required">
                                 <label class="form-label" for="login">Login</label>
                                 <div class="form-notch">
                                     <div class="form-notch-leading" style="width: 9px;"></div>
@@ -57,11 +41,23 @@
 
                             <!-- * Password input -->
                             <div class="form-outline mb-4">
-                                <input type="password" id="password" class="form-control">
+                                <input type="password" id="password" class="form-control _required">
                                 <label class="form-label" for="password" style="margin-left: 0px;">Password</label>
                                 <div class="form-notch">
                                     <div class="form-notch-leading" style="width: 9px;"></div>
                                     <div class="form-notch-middle" style="width: 64.8px;"></div>
+                                    <div class="form-notch-trailing"></div>
+                                </div>
+                            </div>
+
+                            <!-- Cunfirm Password input-->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="confirm" class="form-control _required">
+                                <label class="form-label" for="confirm" style="margin-left: 0px;">Cunfirm
+                                    Password</label>
+                                <div class="form-notch">
+                                    <div class="form-notch-leading" style="width: 9px;"></div>
+                                    <div class="form-notch-middle" style="width: 111px;"></div>
                                     <div class="form-notch-trailing"></div>
                                 </div>
                             </div>
@@ -79,14 +75,70 @@
                                 </div>
                             </div>
 
-                            <button type="button" id="btn-submit" class="btn btn-primary btn-block">Sign in</button>
+                            <button type="button" id="submit" class="btn btn-primary btn-block">Sign in</button>
                         </form>
                     </div>
                 </div>
             </section>
+
+            <!-- * Modal -->
+            <div class="popup">
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Edit user</h5>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modalBody">
+                                <form>
+                                    <!-- * Email input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="changeLogin" class="form-control"
+                                            placeholder="Change login" />
+                                    </div>
+
+                                    <!-- * Password input -->
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="changePassword" class="form-control"
+                                            placeholder="Change password" />
+                                    </div>
+                                </form>
+
+                                <div class="modal-block d-flex justify-content-between gap-2">
+                                    <div class="modal-block__item w-50">
+                                        <p class="text-center fw-semibold">Available</p>
+                                        <div
+                                            class="item border border-2 h-75 py-3 d-flex flex-column justify-content-around align-items-center">
+                                            <button class="btn btn-sm btn-warning">Can Add</button>
+                                            <button class="btn btn-sm btn-warning my-3">Can Remove</button>
+                                            <button class="btn btn-sm btn-warning">Can Edit</button>
+                                        </div>
+                                    </div>
+                                    <div class="modal-block__item w-50">
+                                        <p class="text-center fw-semibold">Active</p>
+                                        <div
+                                            class="item border border-2 h-75 py-3 d-flex flex-column justify-content-around align-items-center">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <script src="./js/libs/mdb.min.js"></script>
     <script type="module" src="./js/admin.js"></script>
 </body>
 

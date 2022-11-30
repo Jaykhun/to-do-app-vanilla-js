@@ -72,10 +72,11 @@ class Registration {
 
             isFormValid
                 ? (
-                    setData('users', [...users, newUser]),
+                    users.push(newUser),
+                    setData('users', users),
                     setData('currentUser', newUser.login),
                     redirectToPage('notes'),
-                    cancelFormItemsValue([password, confirm, login], showPasswordBtn)
+                    cancelFormItemsValue([password, confirm, login], [showPasswordBtn])
                 )
                 : showMessage('In each field must be at least four words')
         }
