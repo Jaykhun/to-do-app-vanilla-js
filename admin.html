@@ -10,7 +10,7 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
     <link rel="stylesheet" href="./css/mdb.min.css" />
     <link rel="stylesheet" href="./css/admin.css">
-    <title>Admin</title>
+    <title>Admin Panel</title>
 </head>
 
 <body>
@@ -96,45 +96,56 @@
                                 <form>
                                     <!-- * Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="changeLogin" class="form-control"
+                                        <input type="text" id="changeLogin" class="form-control text-capitalize _change-required"
                                             placeholder="Change login" />
                                     </div>
 
                                     <!-- * Password input -->
                                     <div class="form-outline mb-4">
-                                        <input type="password" id="changePassword" class="form-control"
+                                        <input type="password" id="changePassword" class="form-control _change-required"
                                             placeholder="Change password" />
+                                    </div>
+
+                                    <!-- * Checkbox input -->
+                                    <div class="d-flex mb-4 flex-lg-row flex-column">
+                                        <div class="form-check me-4">
+                                            <input class="form-check-input" type="checkbox" id="btn-edit-showPassword" />
+                                            <label class="form-check-label" for="btn-edit-showPassword">Show Password</label>
+                                        </div>
+
+                                        <div class="form-check me-4">
+                                            <input class="form-check-input" type="checkbox" id="btn-edit-makeAdmin" />
+                                            <label class="form-check-label" for="btn-edit-makeAdmin">Make an Admin</label>
+                                        </div>
                                     </div>
                                 </form>
 
-                                <div class="modal-block d-flex justify-content-between gap-2">
+                                <div class="modal-block d-flex justify-content-between gap-2" id="allPermissions">
                                     <div class="modal-block__item w-50">
                                         <p class="text-center fw-semibold">Available</p>
-                                        <div
-                                            class="item border border-2 h-75 py-3 d-flex flex-column justify-content-around align-items-center">
-                                            <button class="btn btn-sm btn-warning">Can Add</button>
-                                            <button class="btn btn-sm btn-warning my-3">Can Remove</button>
-                                            <button class="btn btn-sm btn-warning">Can Edit</button>
+                                        <div id="availableWrap" data-permission="active"
+                                            class="item border permission-item border-2 py-3 d-flex flex-column justify-content-around align-items-center gap-3">
                                         </div>
                                     </div>
                                     <div class="modal-block__item w-50">
-                                        <p class="text-center fw-semibold">Active</p>
-                                        <div
-                                            class="item border border-2 h-75 py-3 d-flex flex-column justify-content-around align-items-center">
+                                        <p class="text-center fw-semibold">Not Available</p>
+                                        <div id="activeWrap" data-permission="notActive"
+                                            class="item border permission-item border-2 py-3 d-flex flex-column justify-content-around align-items-center gap-3">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-secondary" id="change-close" data-mdb-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="change-save">Save changes</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- * State Message -->
+            <div class="status-message" id="status-message"></div>
         </div>
     </div>
 

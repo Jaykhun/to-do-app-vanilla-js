@@ -52,7 +52,7 @@ class Auth {
 
         const checkPassword = () => {
             getData('users').forEach(user => {
-                if (user.login === login.value.toLowerCase() && user.password === password.value) {
+                if (user.login === login.value.toLowerCase().trim() && user.password === password.value.trim()) {
                     signIn = true
                     cancelFormItemsValue([login, password], [showPasswordBtn])
                     setData('currentUser', user.login)

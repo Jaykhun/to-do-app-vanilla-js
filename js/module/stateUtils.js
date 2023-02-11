@@ -22,10 +22,11 @@ const showState = (message) => {
        background: #fff;
        font-size: 18px;
        color:  #4ec2e7;
-       z-index: 3;
+       z-index: 9999 !important;
        transition: 0.5s all linear;
        box-shadow: 0 0 5px 0 rgb(160, 159, 159);
        font-family: Arial, Helvetica, sans-serif;
+       border-radius: 0.25em;
     `;
 
     setTimeout(() => {

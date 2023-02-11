@@ -6,11 +6,13 @@ const cancelFormItemsValue = (formItems, checkboxItems) => {
 }
 
 const showPasswordValues = (input) => {
-    input.forEach(item =>
-        item.type === 'password'
+    input.forEach(item => {
+        if(item){
+            item.type === 'password'
             ? item.type = 'text'
             : item.type = 'password'
-    )
+        }
+    })
 }
 
 const formValidate = (reqClass) => {

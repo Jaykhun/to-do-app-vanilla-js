@@ -9,6 +9,10 @@
     }
 }
 
+.permission-item {
+    height: 170px !important;
+}
+
 @media screen and (max-width: 768px) {
     .admin {
         &__users {
