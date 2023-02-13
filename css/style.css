@@ -1,1 +1,38 @@
-.title{text-align:center}.classic-form{max-width:500px}.subtitle{text-align:center;margin-bottom:1.2rem}.input-error{background-color:#ffe9e9 !important}a{cursor:pointer}
+.title {
+  text-align: center;
+}
+
+.classic-form {
+  max-width: 500px;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.input-error {
+  background-color: rgb(255, 233, 233) !important;
+}
+
+a {
+  cursor: pointer;
+}
+
+.users {
+  position: absolute;
+  left: 0;
+  width: 20%;
+}
+
+@media screen and (max-width: 1000px) {
+  .users {
+    display: block;
+    position: static;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .users__body {
+    width: 100%;
+  }
+}

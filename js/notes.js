@@ -1,4 +1,3 @@
-import { users } from "../data/storageUsers.js"
 import { addClass, createElement } from "./module/domUtils.js";
 import { redirectToPage } from "./module/stateUtils.js"
 import { clearData, getData } from "./module/storageUtils.js"
@@ -31,7 +30,6 @@ class Notes {
         this.myProfileBtn = document.querySelector('#myProfile')
         this.userMenu = document.querySelector('#permissons');
         // * 
-
     }
 
     logout() {

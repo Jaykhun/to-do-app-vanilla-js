@@ -1,7 +1,7 @@
 import { users } from '../data/storageUsers.js'
 import { addClass } from './module/domUtils.js';
 import { showMessage, showState } from './module/stateUtils.js';
-import { getData, setData } from './module/storageUtils.js'
+import { getData, setData } from './module/storageUtils.js';
 import { cancelFormItemsValue, showPasswordValues, formValidate } from './module/formUtils.js';
 
 class Admin {
@@ -104,7 +104,7 @@ class Admin {
                     <li data-index ="${index}" data-name="${user.login}" class="users__item d-flex justify-content-between align-items-center mb-3 py-1">
                         <span class="user__name fw-normal text-capitalize fs-5 ${user.isAdmin ? 'text-warning' : ''}">${user.login}</span>
                         <div class="user__buttons">
-                        ${currentUser === 'admin'
+                        ${!user.isAdmin || currentUser === 'admin'
                             ? '<button data-action="delete" class="btn btn-danger btn-sm me-2">delete</button>'
                             : ''
                         }
@@ -177,19 +177,9 @@ class Admin {
     }
 
     saveChanges(index) {
-        const { changeSubmit, changeLogin, changePass, changeMakeAdmin, showUsers, userList, currentUser, users } = this
+        const { changeSubmit, changeLogin, changePass, changeMakeAdmin, showUsers, userList, users } = this
 
         const handleSave = () => {
-            const isLoginDifferent = currentUser.login === changeLogin.value.toLowerCase().trim()
-            const isPasswordDifferent = currentUser.password === changePass.value.toLowerCase().trim()
-            const isAdminDifferent = currentUser.isAdmin === changeMakeAdmin.checked
-
-            if (isLoginDifferent && isPasswordDifferent && isAdminDifferent) return showMessage('Nothing to change')
-
-            const isUserExist = users.some(user => user.login === changeLogin.value.toLowerCase().trim())
-
-            // if (isUserExist) return showMessage('This account already exists')
-
             const isFormValid = formValidate('_change-required')
 
             isFormValid
@@ -201,7 +191,7 @@ class Admin {
                     showUsers(userList),
                     showState('Successfully changed')
                 )
-                : showMessage('In each field must be at least four words')
+                : showState('In each field must be at least four words')
         }
 
         changeSubmit.addEventListener('click', () => handleSave())

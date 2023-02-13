@@ -1,1 +1,19 @@
 @import "./general/ui";
+
+.users {
+    position: absolute;
+    left: 0;
+    width: 20%;
+}
+
+@media screen and (max-width: 1000px) {
+    .users {
+        display: block;
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+        &__body {
+            width: 100%;
+        }
+    }
+}

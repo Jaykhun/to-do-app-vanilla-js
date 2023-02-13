@@ -11,20 +11,54 @@ class Auth {
         this.checkUserInfo();
         this.redirectToRegister();
         this.showPassword()
+        this.showAdmins()
     }
 
     initElements() {
         this.login = document.querySelector('#login');
         this.password = document.querySelector('#password');
         this.submit = document.querySelector('#btn-submit');
-        this.showPasswordBtn = document.querySelector('#btn-showPassword')
-        this.redirectLink = document.querySelector('#redirectLink')
+        this.showPasswordBtn = document.querySelector('#btn-showPassword');
+        this.redirectLink = document.querySelector('#redirectLink');
+        //* accardion menu
+        this.superAdminBlock = document.querySelector('#super-admin');
+        this.adminBlock = document.querySelector('#admin');
     }
 
     initUsers(key, data) {
         if (!localStorage.key(key)) {
             setData(key, data)
         }
+    }
+
+    showAdmins() {
+        const { superAdminBlock, adminBlock } = this
+        const users = getData('users')
+
+        superAdminBlock.innerHTML = ''
+        adminBlock.innerHTML = ''
+
+        const userItem = (login, password) =>
+            `<div class="users__info mb-2">
+                <div class="login">Login: <span class="text-capitalize">${login}</span></div>
+                <div class="password">Password: <span>${password}</span></div>
+            </div>
+            `
+
+        users.forEach(user => {
+            if (user.login === 'admin') {
+                superAdminBlock.innerHTML +=
+                    userItem(user.login, user.password)
+            }
+
+            else if (user.isAdmin === true && user.login !== 'admin') {
+                adminBlock.innerHTML += userItem(user.login, user.password)
+            }
+
+            if (users.length < 2) {
+                adminBlock.innerHTML = 'There are no admin users'
+            }
+        })
     }
 
     showPassword() {
