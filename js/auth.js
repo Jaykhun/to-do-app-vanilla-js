@@ -1,7 +1,7 @@
 import { users } from '../data/storageUsers.js'
 import { addClass } from './module/domUtils.js'
 import { cancelFormItemsValue } from './module/formUtils.js'
-import { redirectToPage, showMessage } from './module/stateUtils.js'
+import { redirectToPage, showState } from './module/stateUtils.js'
 import { getData, setData } from './module/storageUtils.js'
 
 class Auth {
@@ -90,7 +90,6 @@ class Auth {
                 console.log(user.password === password.value.trim())
 
                 if (user.login === login.value.toLowerCase().trim() && user.password === password.value.trim()) {
-                    console.log(1)
                     signIn = true
                     cancelFormItemsValue([login, password], [showPasswordBtn])
                     setData('currentUser', user.login)
@@ -100,7 +99,7 @@ class Auth {
                 else { addClass([login, password], 'input-error') }
             })
 
-            if (!signIn) showMessage('Incorrect login or password')
+            if (!signIn) showState('Incorrect login or password')
         }
 
         submit.addEventListener('click', checkPassword)

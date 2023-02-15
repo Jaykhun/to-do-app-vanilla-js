@@ -1,8 +1,8 @@
 import { users } from '../data/storageUsers.js'
-import { addClass } from './module/domUtils.js';
+import { addClass } from './module/domUtils.js'
+import { cancelFormItemsValue, formValidate, showPasswordValues } from './module/formUtils.js'
+import { redirectToPage, showState } from './module/stateUtils.js'
 import { getData, setData } from './module/storageUtils.js'
-import { redirectToPage, showMessage } from './module/stateUtils.js';
-import { cancelFormItemsValue, showPasswordValues, formValidate } from './module/formUtils.js';
 
 class Registration {
     constructor(data) {
@@ -62,12 +62,12 @@ class Registration {
             const isPasswordsMatch = password.value === confirm.value
 
             if (isUserExist) {
-                return showMessage('This account already exists')
+                return showState('This account already exists')
             }
 
             if (!isPasswordsMatch) {
                 addClass([password, confirm], 'input-error')
-                return showMessage("Password don't match")
+                return showState("Password don't match")
             }
 
             isFormValid
@@ -78,7 +78,7 @@ class Registration {
                     redirectToPage('notes'),
                     cancelFormItemsValue([password, confirm, login], [showPasswordBtn])
                 )
-                : showMessage('In each field must be at least four words')
+                : showState('In each field must be at least four words')
         }
 
         submitBtn.addEventListener('click', addNewUser)

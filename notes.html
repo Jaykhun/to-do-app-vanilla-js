@@ -15,31 +15,25 @@
 
 <body>
     <div class="wrapper">
+        <nav class="navigation-body d-flex justify-content-between align-items-center shadow-5 rounded-5">
+            <h3 class="title title-blog">My Notes</h3>
+            <div class="dropdown dropdown-blog d-flex justify-content-end">
+                <button class="dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuAvatar"
+                    role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <img src="./image/avatar.png" class="rounded-circle" height="25" alt="avatar" loading="lazy" />
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end" id="userMenu" aria-labelledby="navbarDropdownMenuAvatar">
+                    <li>
+                        <a class="dropdown-item" id="logout">Logout</a>
+                    </li>
+                    <li id="permissons"></li>
+                </ul>
+            </div>
+        </nav>
         <div class="container">
             <!-- * Notes Body -->
             <div class="notes">
-                <nav class="notes__header d-flex justify-content-between align-items-center shadow-5 rounded-5">
-                    <h3 class="title title-blog">My Notes</h3>
-                    <div class="dropdown dropdown-blog d-flex justify-content-end">
-                        <button class="dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuAvatar"
-                            role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="./image/avatar.png" class="rounded-circle" height="25" alt="avatar"
-                                loading="lazy" />
-                        </button>
-
-                        <ul class="dropdown-menu dropdown-menu-end" id="userMenu"
-                            aria-labelledby="navbarDropdownMenuAvatar">
-                            <li>
-                                <a class="dropdown-item" id="myProfile">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" id="logout">Logout</a>
-                            </li>
-                            <li id="permissons"></li>
-                        </ul>
-                    </div>
-                </nav>
-
                 <!-- * Notes Form -->
                 <section>
                     <form class="notes-form">
@@ -70,8 +64,9 @@
                 </section>
             </div>
         </div>
+        <!-- * State Message -->
+        <div class="status-message" id="status-message"></div>
     </div>
-
     <script src="./js/libs/mdb.min.js"></script>
     <script type="module" src="./js/notes.js"></script>
 </body>

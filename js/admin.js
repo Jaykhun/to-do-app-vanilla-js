@@ -1,7 +1,7 @@
 import { users } from '../data/storageUsers.js'
 import { addClass } from './module/domUtils.js'
 import { cancelFormItemsValue, formValidate, showPasswordValues } from './module/formUtils.js'
-import { showMessage, showState } from './module/stateUtils.js'
+import { showState } from './module/stateUtils.js'
 import { getData, setData } from './module/storageUtils.js'
 
 class Admin {
@@ -68,13 +68,13 @@ class Admin {
 
             const isUserExist = users.some(user => user.login === login.value.toLowerCase().trim())
 
-            if (isUserExist) return showMessage('This account already exists')
+            if (isUserExist) return showState('This account already exists')
 
             const isPasswordsMatch = password.value === confirm.value
 
             if (!isPasswordsMatch) {
                 addClass([password, confirm], 'input-error')
-                return showMessage("Password don't match")
+                return showState("Password don't match")
             }
 
             const isFormValid = formValidate('_required')
@@ -87,7 +87,7 @@ class Admin {
                     cancelFormItemsValue([password, confirm, login], [showPasswordBtn, makeAdminBtn]),
                     showState('User added successffuly')
                 )
-                : showMessage('In each field must be at least four words')
+                : showState('In each field must be at least four words')
         }
 
         submitBtn.addEventListener('click', addNewUser)

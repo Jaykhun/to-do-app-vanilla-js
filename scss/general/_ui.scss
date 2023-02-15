@@ -18,3 +18,20 @@
 a {
     cursor: pointer;
 }
+
+.wrapper {
+    max-width: 1920px;
+    margin: auto;
+}
+
+.navigation-body {
+    padding: 10px 20px;
+}
+
+.dropdown-blog {
+    button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+    }
+}

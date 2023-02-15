@@ -3,9 +3,6 @@ const redirectToPage = (page) => {
         window.location.href = `${page}.html`;
     }, 0);
 }
-
-const showMessage = (message) => alert(message);
-
 const showState = (message) => {
     let wrap = document.querySelector('#status-message');
     let block = document.createElement('div');
@@ -17,7 +14,7 @@ const showState = (message) => {
        min-width: 150px;
        max-width: 200px;
        padding: 10px;
-       bottom: 35px;
+       top: 35px;
        right: -300px;
        background: #fff;
        font-size: 18px;
@@ -44,6 +41,6 @@ const showState = (message) => {
 
 export {
     redirectToPage,
-    showMessage,
     showState
 }
+

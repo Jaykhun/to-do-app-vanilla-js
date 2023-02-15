@@ -14,7 +14,27 @@
 </head>
 
 <body>
-    <div class="wrappper">
+    <div class="wrapper">
+        <nav class="navigation-body d-flex justify-content-between align-items-center shadow-5 rounded-5">
+            <h3 class="title title-blog">My Panel</h3>
+            <div class="dropdown dropdown-blog d-flex justify-content-end">
+                <button class="dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuAvatar"
+                    role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <img src="./image/avatar.png" class="rounded-circle" height="25" alt="avatar" loading="lazy" />
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end" id="userMenu"
+                    aria-labelledby="navbarDropdownMenuAvatar">
+                    <li>
+                        <a href="./profile.html" class="dropdown-item" id="myProfile">My profile</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" id="logout">Logout</a>
+                    </li>
+                    <li id="permissons"></li>
+                </ul>
+            </div>
+        </nav>
         <div class="container">
             <section
                 class="admin position-relative d-flex justify-content-between flex-column-reverse flex-md-row align-md-center gap-5 my-3 p-2">
@@ -96,7 +116,8 @@
                                 <form>
                                     <!-- * Email input -->
                                     <div class="form-outline mb-4">
-                                        <input type="text" id="changeLogin" class="form-control text-capitalize _change-required"
+                                        <input type="text" id="changeLogin"
+                                            class="form-control text-capitalize _change-required"
                                             placeholder="Change login" />
                                     </div>
 
@@ -109,13 +130,16 @@
                                     <!-- * Checkbox input -->
                                     <div class="d-flex mb-4 flex-lg-row flex-column">
                                         <div class="form-check me-4">
-                                            <input class="form-check-input" type="checkbox" id="btn-edit-showPassword" />
-                                            <label class="form-check-label" for="btn-edit-showPassword">Show Password</label>
+                                            <input class="form-check-input" type="checkbox"
+                                                id="btn-edit-showPassword" />
+                                            <label class="form-check-label" for="btn-edit-showPassword">Show
+                                                Password</label>
                                         </div>
 
                                         <div class="form-check me-4">
                                             <input class="form-check-input" type="checkbox" id="btn-edit-makeAdmin" />
-                                            <label class="form-check-label" for="btn-edit-makeAdmin">Make an Admin</label>
+                                            <label class="form-check-label" for="btn-edit-makeAdmin">Make an
+                                                Admin</label>
                                         </div>
                                     </div>
                                 </form>
@@ -137,7 +161,8 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" id="change-close" data-mdb-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" id="change-close"
+                                    data-mdb-dismiss="modal">Close</button>
                                 <button type="button" class="btn btn-primary" id="change-save">Save changes</button>
                             </div>
                         </div>
