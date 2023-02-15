@@ -1,13 +1,14 @@
 import { users } from '../data/storageUsers.js'
 import { addClass } from './module/domUtils.js'
 import { cancelFormItemsValue, formValidate, showPasswordValues } from './module/formUtils.js'
-import { showState } from './module/stateUtils.js'
-import { getData, setData } from './module/storageUtils.js'
+import { redirectToPage, showState } from './module/stateUtils.js'
+import { clearData, getData, setData } from './module/storageUtils.js'
 
 class Admin {
     constructor(data) {
         this.initElements()
         this.initUsers('users', data)
+        this.logout()
         this.addUser()
         this.showUsers(this.userList)
         this.deleteUser()
@@ -26,6 +27,7 @@ class Admin {
         this.userList = document.querySelector('#userList')
         // * Modal
         this.modalBody = document.querySelector('#modalBody')
+        this.logoutBtn = document.querySelector('#logout')
         // * Edit info
         this.changeLogin = document.querySelector('#changeLogin')
         this.changePass = document.querySelector('#changePassword')
@@ -43,9 +45,22 @@ class Admin {
         if (!localStorage.key(key)) {
             setData(key, data)
         }
+
+        const currentUser = getData('currentUser')
+        if (!currentUser) {
+            document.body.innerHTML = '<p class="text-center my-4 fw-bold">Please first sign in</p>'
+        }
+        
         const { showPasswordBtn, password, confirm, changeShowBtn, changePass } = this
         this.showPassword(showPasswordBtn, password, confirm)
         this.showPassword(changeShowBtn, changePass)
+    }
+
+    logout() {
+        this.logoutBtn.addEventListener('click', () => {
+            clearData('currentUser')
+            redirectToPage('index')
+        })
     }
 
     showPassword(showPasswordElement, password, confirm) {

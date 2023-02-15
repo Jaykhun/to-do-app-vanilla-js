@@ -1,4 +1,4 @@
-import { addClass, createElement } from "./module/domUtils.js";
+import { addClass, createElement } from "./module/domUtils.js"
 import { redirectToPage } from "./module/stateUtils.js"
 import { clearData, getData } from "./module/storageUtils.js"
 
