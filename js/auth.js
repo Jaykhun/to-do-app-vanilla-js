@@ -1,28 +1,28 @@
 import { users } from '../data/storageUsers.js'
-import { cancelFormItemsValue } from './module/formUtils.js';
+import { addClass } from './module/domUtils.js'
+import { cancelFormItemsValue } from './module/formUtils.js'
+import { redirectToPage, showMessage } from './module/stateUtils.js'
 import { getData, setData } from './module/storageUtils.js'
-import { showMessage, redirectToPage } from './module/stateUtils.js'
-import { addClass } from './module/domUtils.js';
 
 class Auth {
     constructor(data) {
-        this.initUsers('users', data);
-        this.initElements();
-        this.checkUserInfo();
-        this.redirectToRegister();
+        this.initUsers('users', data)
+        this.initElements()
+        this.checkUserInfo()
+        this.redirectToRegister()
         this.showPassword()
         this.showAdmins()
     }
 
     initElements() {
-        this.login = document.querySelector('#login');
-        this.password = document.querySelector('#password');
-        this.submit = document.querySelector('#btn-submit');
-        this.showPasswordBtn = document.querySelector('#btn-showPassword');
-        this.redirectLink = document.querySelector('#redirectLink');
+        this.login = document.querySelector('#login')
+        this.password = document.querySelector('#password')
+        this.submit = document.querySelector('#btn-submit')
+        this.showPasswordBtn = document.querySelector('#btn-showPassword')
+        this.redirectLink = document.querySelector('#redirectLink')
         //* accardion menu
-        this.superAdminBlock = document.querySelector('#super-admin');
-        this.adminBlock = document.querySelector('#admin');
+        this.superAdminBlock = document.querySelector('#super-admin')
+        this.adminBlock = document.querySelector('#admin')
     }
 
     initUsers(key, data) {
@@ -75,8 +75,8 @@ class Auth {
         const { login, password, showPasswordBtn, redirectLink } = this
 
         redirectLink.addEventListener('click', () => {
-            redirectToPage('sign-up');
-            cancelFormItemsValue([login, password], showPasswordBtn);
+            redirectToPage('sign-up')
+            cancelFormItemsValue([login, password], showPasswordBtn)
         })
     }
 
@@ -86,7 +86,11 @@ class Auth {
 
         const checkPassword = () => {
             getData('users').forEach(user => {
+                console.log(user.login === login.value.toLowerCase().trim())
+                console.log(user.password === password.value.trim())
+
                 if (user.login === login.value.toLowerCase().trim() && user.password === password.value.trim()) {
+                    console.log(1)
                     signIn = true
                     cancelFormItemsValue([login, password], [showPasswordBtn])
                     setData('currentUser', user.login)
