@@ -18,17 +18,19 @@
         <nav class="navigation-body d-flex justify-content-between align-items-center shadow-5 rounded-5">
             <h3 class="title title-blog">My Panel</h3>
             <div class="dropdown dropdown-blog d-flex justify-content-end">
+                <span class="user_name m-1"></span>
                 <button class="dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuAvatar"
                     role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                     <img src="./image/avatar.png" class="rounded-circle" height="25" alt="avatar" loading="lazy" />
                 </button>
 
-                <ul class="dropdown-menu dropdown-menu-end" id="userMenu"
-                    aria-labelledby="navbarDropdownMenuAvatar">
+                <ul class="dropdown-menu dropdown-menu-end" id="userMenu" aria-labelledby="navbarDropdownMenuAvatar">
+                    <li>
+                        <a href="notes.html" class="dropdown-item">All Notes</a>
+                    </li>
                     <li>
                         <a class="dropdown-item" id="logout">Logout</a>
                     </li>
-                    <li id="permissons"></li>
                 </ul>
             </div>
         </nav>

@@ -25,6 +25,7 @@ class Admin {
         this.makeAdminBtn = document.querySelector('#btn-makeAdmin')
         // * Users
         this.userList = document.querySelector('#userList')
+        this.userName = document.querySelector('.user_name')
         // * Modal
         this.modalBody = document.querySelector('#modalBody')
         this.logoutBtn = document.querySelector('#logout')
@@ -42,18 +43,19 @@ class Admin {
     }
 
     initUsers(key, data) {
+        const { showPasswordBtn, password, confirm, changeShowBtn, changePass, userName, showPassword } = this
+
         if (!localStorage.key(key)) {
             setData(key, data)
         }
 
         const currentUser = getData('currentUser')
-        if (!currentUser) {
-            document.body.innerHTML = '<p class="text-center my-4 fw-bold">Please first sign in</p>'
-        }
-        
-        const { showPasswordBtn, password, confirm, changeShowBtn, changePass } = this
-        this.showPassword(showPasswordBtn, password, confirm)
-        this.showPassword(changeShowBtn, changePass)
+        currentUser
+            ? userName.innerHTML = currentUser
+            : document.body.innerHTML = '<p class="text-center my-4 fw-bold">Please first sign in</p>'
+
+        showPassword(showPasswordBtn, password, confirm)
+        showPassword(changeShowBtn, changePass)
     }
 
     logout() {
@@ -73,7 +75,7 @@ class Admin {
         const addNewUser = () => {
             const users = getData('users')
             const newUser = {
-                login: login.value.toLowerCase().trim(),
+                login: login.value.trim(),
                 password: password.value.trim(),
                 isAdmin: makeAdminBtn.checked,
                 canEdit: true,
@@ -81,7 +83,7 @@ class Admin {
                 canAdd: true
             }
 
-            const isUserExist = users.some(user => user.login === login.value.toLowerCase().trim())
+            const isUserExist = users.some(user => user.login === login.value.trim())
 
             if (isUserExist) return showState('This account already exists')
 
@@ -199,7 +201,7 @@ class Admin {
 
             isFormValid
                 ? (
-                    users[index].login = changeLogin.value.toLowerCase().trim(),
+                    users[index].login = changeLogin.value.trim(),
                     users[index].password = changePass.value.trim(),
                     users[index].isAdmin = changeMakeAdmin.checked,
                     setData('users', users),

@@ -40,11 +40,12 @@ class Auth {
 
         const userItem = (login, password) =>
             `<div class="users__info mb-2">
-                <div class="login">Login: <span class="text-capitalize">${login}</span></div>
-                <div class="password">Password: <span>${password}</span></div>
+                <div class="login">Login: <span class="userLogin">${login}</span></div>
+                <div class="password">Password: <span class="userPass">${password}</span></div>
             </div>
             `
 
+        let flag = false
         users.forEach(user => {
             if (user.login === 'admin') {
                 superAdminBlock.innerHTML +=
@@ -53,12 +54,13 @@ class Auth {
 
             else if (user.isAdmin === true && user.login !== 'admin') {
                 adminBlock.innerHTML += userItem(user.login, user.password)
-            }
-
-            if (users.length < 2) {
-                adminBlock.innerHTML = 'There are no admin users'
+                flag = true
             }
         })
+
+        !flag
+            ? adminBlock.innerHTML = 'There are no admin users'
+            : ''
     }
 
     showPassword() {
@@ -86,10 +88,7 @@ class Auth {
 
         const checkPassword = () => {
             getData('users').forEach(user => {
-                console.log(user.login === login.value.toLowerCase().trim())
-                console.log(user.password === password.value.trim())
-
-                if (user.login === login.value.toLowerCase().trim() && user.password === password.value.trim()) {
+                if (user.login === login.value.trim() && user.password === password.value.trim()) {
                     signIn = true
                     cancelFormItemsValue([login, password], [showPasswordBtn])
                     setData('currentUser', user.login)
