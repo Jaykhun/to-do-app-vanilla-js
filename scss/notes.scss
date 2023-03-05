@@ -1,6 +1,26 @@
 @import "./general/ui";
 
 .notes {
+    P {
+        margin: 0;
+    }
+    &__item {
+        margin-bottom: 15px;
+        min-height: 50px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        &:hover {
+            box-shadow: 0px 0px 2px 2px rgb(181 175 175 / 23%);
+        }
+
+        .item{
+            display: flex;
+            &__name{
+                flex: 1 1 auto;
+                cursor: pointer;
+            }
+        }
+    }
     .notes-form {
         margin: 20px 0px;
         &__type {
@@ -46,7 +66,7 @@
 
 @media screen and (max-width: 767px) {
     .notes {
-        .notes-form { 
+        .notes-form {
             &__inputs {
                 flex-direction: column;
             }
