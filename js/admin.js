@@ -1,8 +1,8 @@
 import { users } from '../data/storageUsers.js'
-import { addClass } from './module/domUtils.js'
-import { cancelFormItemsValue, formValidate, showPasswordValues } from './module/formUtils.js'
-import { redirectToPage, showState } from './module/stateUtils.js'
-import { clearData, getData, setData } from './module/storageUtils.js'
+import { addClass } from './utils/domUtils.js'
+import { cancelFormItemsValue, formValidate, showPasswordValues } from './utils/formUtils.js'
+import { redirectToPage, showState } from './utils/stateUtils.js'
+import { clearData, getData, setData } from './utils/storageUtils.js'
 
 class Admin {
     constructor(data) {

@@ -9,26 +9,26 @@ const showPasswordValues = (input) => {
     input.forEach(item => {
         if(item){
             item.type === 'password'
-            ? item.type = 'text'
-            : item.type = 'password'
+                ? item.type = 'text'
+                : item.type = 'password'
         }
     })
 }
 
 const formValidate = (reqClass) => {
     const formReq = document.querySelectorAll(`.${reqClass}`);
-    let error = true;
+    let IsError = true;
 
     formReq.forEach(input => {
         if (input.value.trim().length < 3) {
             addClass([input], 'input-error')
-            error = false
+            IsError = false
         }
 
         else removeClass([input], 'input-error')
     })
 
-    return error;
+    return IsError;
 };
 
 

@@ -1,8 +1,8 @@
 import { users } from '../data/storageUsers.js'
-import { addClass } from './module/domUtils.js'
-import { cancelFormItemsValue } from './module/formUtils.js'
-import { redirectToPage, showState } from './module/stateUtils.js'
-import { getData, setData } from './module/storageUtils.js'
+import { addClass } from './utils/domUtils.js'
+import { cancelFormItemsValue } from './utils/formUtils.js'
+import { redirectToPage, showState } from './utils/stateUtils.js'
+import { getData, setData } from './utils/storageUtils.js'
 
 class Auth {
     constructor(data) {

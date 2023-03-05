@@ -1,6 +1,6 @@
-import { addClass, createElement } from "./module/domUtils.js"
-import { redirectToPage } from "./module/stateUtils.js"
-import { clearData, getData } from "./module/storageUtils.js"
+import { addClass, createElement } from "./utils/domUtils.js"
+import { redirectToPage } from "./utils/stateUtils.js"
+import { clearData, getData } from "./utils/storageUtils.js"
 
 class Notes {
     constructor() {
@@ -8,6 +8,7 @@ class Notes {
         this.init()
         this.logout()
         this.checkUserPermissions()
+        this.addNote()
     }
 
     initElements() {
@@ -15,7 +16,7 @@ class Notes {
         this.noteText = document.querySelector('#text')
         this.noteDate = document.querySelector('#date')
         this.noteImportant = document.querySelector('#importantBtn')
-        this.noteAdd = document.querySelector('#addBtn')
+        this.noteSubmit = document.querySelector('#addBtn')
         this.noteSearch = document.querySelector('#search')
         // * User
         this.userName = document.querySelector('.user_name')
@@ -43,10 +44,20 @@ class Notes {
     checkUserPermissions() {
         const currentUser = getData('users').filter(user => user.login === getData('currentUser'))
         if (currentUser && currentUser[0].isAdmin) {
-            const link = createElement('a', this.userMenu, 'Permissions')
+            const link = createElement('a', this.userMenu, 'Admin Panel')
             addClass([link], 'dropdown-item')
             link.addEventListener('click', () => redirectToPage('admin'))
         }
+    }
+
+    addNote(){
+        const {noteDate, noteSubmit} = this
+
+        noteSubmit.addEventListener('click', (e) => {
+            e.preventDefault()
+
+            
+        })
     }
 }
 
