@@ -1,24 +1,3 @@
-.title {
-    text-align: center;
-}
-
-.classic-form {
-    max-width: 500px;
-}
-
-.subtitle {
-    text-align: center;
-    margin-bottom: 1.2rem;
-}
-
-.input-error {
-    background-color: rgb(255, 233, 233) !important;
-}
-
-a {
-    cursor: pointer;
-}
-
 .wrapper {
     max-width: 1920px;
     margin: auto;
@@ -61,4 +40,37 @@ select::-ms-expand {
     min-height: auto;
     border-radius: 0.25em;
     overflow: hidden;
+}
+
+.title {
+    text-align: center;
+}
+
+.classic-form {
+    max-width: 500px;
+}
+
+.subtitle {
+    text-align: center;
+    margin-bottom: 1.2rem;
+}
+
+.input-error {
+    background-color: rgb(255, 233, 233) !important;
+}
+
+.important {
+    background-color: #dc4c64;
+}
+
+.done {
+    background-color: #14a44d;
+}
+
+.usual {
+    background-color: #3b71ca;
+}
+
+a {
+    cursor: pointer;
 }

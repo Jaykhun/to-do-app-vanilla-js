@@ -1,1 +1,156 @@
-.title{text-align:center}.classic-form{max-width:500px}.subtitle{text-align:center;margin-bottom:1.2rem}.input-error{background-color:#ffe9e9 !important}a{cursor:pointer}.wrapper{max-width:1920px;margin:auto}.navigation-body{padding:10px 20px}.dropdown-blog button{border:none;outline:none;background-color:rgba(0,0,0,0)}select{-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;border:0;box-shadow:none;flex:1;padding:0 1em;color:#fff;background-color:#2c3e50;background-image:none;cursor:pointer}select::-ms-expand{display:none}.select{position:relative;display:flex;width:20em;height:2.3em;min-height:auto;border-radius:.25em;overflow:hidden}.notes P{margin:0}.notes__item{margin-bottom:15px;min-height:50px;border-radius:6px;transition:all .2s ease-in-out;padding:8px}.notes__item:hover{border-radius:10px;box-shadow:-10px 20px 40px -8px rgba(0,0,0,.1);transform:scale(1.01) translateX(10px)}.notes__item .item{display:flex}.notes__item .item__name{flex:1 1 auto;cursor:pointer}.notes__body{margin:20px 0px}.notes .notes-form{margin:20px 0px}.notes .notes-form__type{flex:0 0 50%}.notes .notes-form__actions{flex:0 0 50%}.notes .notes-form__date{margin-right:20px;flex:1 1 auto;color:#4f4f4f;padding:3px 5px;border-radius:5px;background-color:rgba(0,0,0,0);border:2px solid #bdbdbd}.notes .notes-form__date input{border:none;outline:none;color:#858585}.notes .notes-form__date input::-webkit-calendar-picker-indicator{color:#fff}.notes .notes-form__date input::-webkit-calendar-picker-indicator:hover{cursor:pointer}.notes .notes-form__text{flex:1 1 auto}.notes .notes-form__checkbox{flex:0 0 10%}.notes .title-blog{font-weight:700}@media screen and (max-width: 767px){.notes .notes-form__inputs{flex-direction:column}.notes .notes-form__type{margin-bottom:20px;align-items:flex-start}}
+.wrapper {
+  max-width: 1920px;
+  margin: auto;
+}
+
+.navigation-body {
+  padding: 10px 20px;
+}
+
+.dropdown-blog button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #2c3e50;
+  background-image: none;
+  cursor: pointer;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  width: 20em;
+  height: 2.3em;
+  min-height: auto;
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+
+.title {
+  text-align: center;
+}
+
+.classic-form {
+  max-width: 500px;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+.input-error {
+  background-color: rgb(255, 233, 233) !important;
+}
+
+.important {
+  background-color: #dc4c64;
+}
+
+.done {
+  background-color: #14a44d;
+}
+
+.usual {
+  background-color: #3b71ca;
+}
+
+a {
+  cursor: pointer;
+}
+
+.notes P {
+  margin: 0;
+}
+.notes__item {
+  margin-bottom: 15px;
+  min-height: 50px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  padding: 8px;
+}
+.notes__item:hover {
+  border-radius: 10px;
+  box-shadow: -10px 20px 40px -8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.01) translateX(10px);
+}
+.notes__item .item {
+  display: flex;
+}
+.notes__item .item__name {
+  flex: 1 1 auto;
+  cursor: pointer;
+}
+.notes__item .item__circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.notes__body {
+  margin: 20px 0px;
+}
+.notes .notes-form {
+  margin: 20px 0px;
+}
+.notes .notes-form__type {
+  flex: 0 0 50%;
+}
+.notes .notes-form__actions {
+  flex: 0 0 50%;
+}
+.notes .notes-form__date {
+  margin-right: 20px;
+  flex: 1 1 auto;
+  color: #4f4f4f;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 2px solid #bdbdbd;
+}
+.notes .notes-form__date input {
+  border: none;
+  outline: none;
+  color: #858585;
+}
+.notes .notes-form__date input::-webkit-calendar-picker-indicator {
+  color: #fff;
+}
+.notes .notes-form__date input::-webkit-calendar-picker-indicator:hover {
+  cursor: pointer;
+}
+.notes .notes-form__text {
+  flex: 1 1 auto;
+}
+.notes .notes-form__checkbox {
+  flex: 0 0 10%;
+}
+.notes .title-blog {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 767px) {
+  .notes .notes-form__inputs {
+    flex-direction: column;
+  }
+  .notes .notes-form__type {
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+}

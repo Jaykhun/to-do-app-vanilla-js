@@ -32,4 +32,5 @@ const formValidate = (reqClass) => {
 };
 
 
-export { cancelFormItemsValue, showPasswordValues, formValidate }
+export { cancelFormItemsValue, formValidate, showPasswordValues }
+

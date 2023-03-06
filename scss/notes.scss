@@ -9,7 +9,7 @@
         margin-bottom: 15px;
         min-height: 50px;
         border-radius: 6px;
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
         padding: 8px;
         &:hover {
             border-radius: 10px;
@@ -17,16 +17,23 @@
             transform: scale(1.01) translateX(10px);
         }
 
-        .item{
+        .item {
             display: flex;
-            &__name{
+            &__name {
                 flex: 1 1 auto;
                 cursor: pointer;
+            }
+
+            &__circle {
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                margin-right: 10px;
             }
         }
     }
 
-    &__body{
+    &__body {
         margin: 20px 0px;
     }
 

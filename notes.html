@@ -40,11 +40,12 @@
                         <div class="notes-form__inputs d-flex align-items-lg-center flex-wrap">
                             <div class="notes-form__type d-flex align-items-center justify-content-between">
                                 <div class="notes-form__date">
-                                    <input type="date">
+                                    <input type="date" id="date">
                                 </div>
 
                                 <div class="form-outline notes-form__text">
-                                    <input type="text" id="text" class="form-control" placeholder="Add your note" />
+                                    <input type="text" id="text" class="form-control _required"
+                                        placeholder="Add your note" />
                                 </div>
                             </div>
 
@@ -71,26 +72,8 @@
                     </div>
                 </section>
 
-               <!-- * Notes Body -->
-                <section class="notes__body">
-                    <div class="notes__item item d-flex justify-content-between align-items-center">
-                        <p class="item__name">Learn Next Js</p>
-
-                        <div class="item__actions">
-                            <button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-
-                    <div class="notes__item item d-flex justify-content-between align-items-center p-2">
-                        <p class="item__name">Learn MongoDB</p>
-
-                        <div class="item__actions">
-                            <button class="btn btn-primary">Edit</button>
-                            <button class="btn btn-danger">Delete</button>
-                        </div>
-                    </div>
-                </section>
+                <!-- * Notes Body -->
+                <section class="notes__body" id="notesBody"></section>
             </div>
         </div>
         <!-- * State Message -->

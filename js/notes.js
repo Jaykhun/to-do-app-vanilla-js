@@ -1,6 +1,7 @@
 import { addClass, createElement } from "./utils/domUtils.js"
-import { redirectToPage } from "./utils/stateUtils.js"
-import { clearData, getData } from "./utils/storageUtils.js"
+import { formValidate } from './utils/formUtils.js'
+import { redirectToPage, showState } from "./utils/stateUtils.js"
+import { clearData, getData, setData } from "./utils/storageUtils.js"
 
 class Notes {
     constructor() {
@@ -9,6 +10,10 @@ class Notes {
         this.logout()
         this.checkUserPermissions()
         this.addNote()
+        this.showNotes()
+        this.deleteNote()
+        this.editNote()
+        this.searchNote()
     }
 
     initElements() {
@@ -18,6 +23,7 @@ class Notes {
         this.noteImportant = document.querySelector('#importantBtn')
         this.noteSubmit = document.querySelector('#addBtn')
         this.noteSearch = document.querySelector('#search')
+        this.notesBody = document.querySelector('#notesBody')
         // * User
         this.userName = document.querySelector('.user_name')
         // * Menu
@@ -27,11 +33,15 @@ class Notes {
     }
 
     init() {
-        const {userName} = this
+        const { userName } = this
         const currentUser = getData('currentUser')
         currentUser
             ? userName.innerHTML = currentUser
             : document.body.innerHTML = '<p class="text-center my-4 fw-bold">Please first sign in</p>'
+
+        if (!localStorage.getItem('notes')) {
+            setData('notes', [])
+        }
     }
 
     logout() {
@@ -50,13 +60,85 @@ class Notes {
         }
     }
 
-    addNote(){
-        const {noteDate, noteSubmit} = this
+    showNotes() {
+        const { notesBody } = this
+        const notes = getData('notes')
+        const currentUser = getData('currentUser')
+        notesBody.innerHTML = ''
+        notes.forEach((note, index) => {
+            notesBody.innerHTML += `
+            <div data-index=${index} data-author=${note.author} class="notes__item item d-flex justify-content-between align-items-center p-2">
+                <span class="item__circle ${note.important ? 'bg-danger' : 'bg-warning'} ${note.completed ? 'bg-success' : ''}"></span>
+                <p class="item__name">Learn MongoDB</p>
+
+                <div class="item__actions">
+                    <button class="btn btn-primary" data-action='edit'>Edit</button>
+                    <button class="btn btn-danger" data-action='delete'>Delete</button>
+                </div>
+            </div>
+            `
+        })
+    }
+
+    addNote() {
+        const { noteDate, noteSubmit, noteImportant, noteText, showNotes } = this
+
+        const addNote = () => {
+            const notes = getData('notes')
+            const currentUser = getData('currentUser')
+
+            const newNote = {
+                author: currentUser,
+                important: noteImportant.checked,
+                completed: false,
+                text: noteText.value,
+                date: noteDate.value
+            }
+
+            const isFormValid = formValidate('_required')
+
+            isFormValid
+                ? (
+                    notes.push(newNote),
+                    setData('notes', notes),
+                    showNotes(),
+                    cancelFormItemsValue([noteDate, noteText], [noteImportant]),
+                    showState('Note added')
+                )
+                : showState('In each field must be at least four words')
+        }
 
         noteSubmit.addEventListener('click', (e) => {
             e.preventDefault()
+            addNote()
+        })
+    }
 
-            
+    deleteNote() {
+        const { showNotes, notesBody } = this
+        notesBody.addEventListener('click', (e) => {
+            if (e.target.getAttribute('data-action') === 'delete') {
+                const notes = getData('notes')
+                const noteIndex = e.target.closest('.notes__item').getAttribute('data-index')
+                notes.splice(noteIndex, 1)
+
+                // setData('notes', notes)
+                showNotes()
+            }
+        })
+    }
+
+    editNote() {
+
+    }
+
+    searchNote() {
+        const { noteSearch } = this
+        noteSearch.addEventListener('keyup', () => {
+            const notes = getData('notes')
+            let value = noteSearch.value.toLowerCase()
+            const filteredNotes = notes.filter(el => el.target.toLowerCase().includes(value))
+
         })
     }
 }
