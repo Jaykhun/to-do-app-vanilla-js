@@ -10,7 +10,7 @@ class Notes {
         this.logout()
         this.checkUserPermissions()
         this.addNote()
-        this.showNotes()
+        this.showNotes(this.notesBody)
         this.deleteNote()
         this.editNote()
         this.searchNote()
@@ -61,15 +61,14 @@ class Notes {
     }
 
     showNotes() {
-        const { notesBody } = this
         const notes = getData('notes')
         const currentUser = getData('currentUser')
-        notesBody.innerHTML = ''
+        this.notesBody.innerHTML = ''
         notes.forEach((note, index) => {
-            notesBody.innerHTML += `
+            this.notesBody.innerHTML += `
             <div data-index=${index} data-author=${note.author} class="notes__item item d-flex justify-content-between align-items-center p-2">
                 <span class="item__circle ${note.important ? 'bg-danger' : 'bg-warning'} ${note.completed ? 'bg-success' : ''}"></span>
-                <p class="item__name">Learn MongoDB</p>
+                <p class="item__name">${note.text}</p>
 
                 <div class="item__actions">
                     <button class="btn btn-primary" data-action='edit'>Edit</button>
@@ -115,15 +114,15 @@ class Notes {
     }
 
     deleteNote() {
-        const { showNotes, notesBody } = this
-        notesBody.addEventListener('click', (e) => {
+        this.notesBody.addEventListener('click', (e) => {
             if (e.target.getAttribute('data-action') === 'delete') {
                 const notes = getData('notes')
                 const noteIndex = e.target.closest('.notes__item').getAttribute('data-index')
                 notes.splice(noteIndex, 1)
-
-                // setData('notes', notes)
-                showNotes()
+                
+                showState('Successfully deleted')
+                setData('notes', notes)
+                this.showNotes()
             }
         })
     }
@@ -133,12 +132,15 @@ class Notes {
     }
 
     searchNote() {
-        const { noteSearch } = this
-        noteSearch.addEventListener('keyup', () => {
-            const notes = getData('notes')
-            let value = noteSearch.value.toLowerCase()
-            const filteredNotes = notes.filter(el => el.target.toLowerCase().includes(value))
-
+        this.noteSearch.addEventListener('keyup', () => {
+            let value = this.noteSearch.value.toLowerCase()
+            const notesName = document.querySelectorAll('.item__name')
+            notesName.forEach(e => {
+                const itemContent = e.parentNode
+                e.innerText.toLowerCase().search(value) == -1
+                    ? itemContent.classList.add('d-none')
+                    : itemContent.classList.remove('d-none')
+            })
         })
     }
 }
