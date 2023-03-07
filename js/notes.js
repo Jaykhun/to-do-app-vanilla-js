@@ -2,6 +2,7 @@ import { addClass, createElement } from "./utils/domUtils.js"
 import { formValidate } from './utils/formUtils.js'
 import { redirectToPage, showState } from "./utils/stateUtils.js"
 import { clearData, getData, setData } from "./utils/storageUtils.js"
+import { sortDate } from "./utils/dateUtils.js"
 
 class Notes {
     constructor() {
@@ -62,20 +63,27 @@ class Notes {
 
     showNotes() {
         const notes = getData('notes')
+        const users = getData('users')
         const currentUser = getData('currentUser')
+        const user = users.find(user => user.login === currentUser)
         this.notesBody.innerHTML = ''
         notes.forEach((note, index) => {
-            this.notesBody.innerHTML += `
-            <div data-index=${index} data-author=${note.author} class="notes__item item d-flex justify-content-between align-items-center p-2">
-                <span class="item__circle ${note.important ? 'bg-danger' : 'bg-warning'} ${note.completed ? 'bg-success' : ''}"></span>
-                <p class="item__name">${note.text}</p>
-
-                <div class="item__actions">
-                    <button class="btn btn-primary" data-action='edit'>Edit</button>
-                    <button class="btn btn-danger" data-action='delete'>Delete</button>
+            if(note.author === currentUser || user.isAdmin){
+                this.notesBody.innerHTML += `
+                <div data-index=${index} data-author=${note.author} class="notes__item item d-flex justify-content-between align-items-center p-2">
+                    <div class="item__content d-flex align-items-center gap-2">
+                        <span class="item__circle ${note.important ? 'bg-danger' : 'bg-warning'} ${note.completed ? 'bg-success' : ''}"></span>
+                        <p class="item__name">${note.date} / <span class="text-black fw-bold">${user.isAdmin ? note.author : ''}</span> </p>
+                        <p class="item__name">${note.text}</p>
+                    </div>
+    
+                    <div class="item__actions">
+                        <button class="btn btn-primary" data-action='edit'>Edit</button>
+                        <button class="btn btn-danger" data-action='delete'>Delete</button>
+                    </div>
                 </div>
-            </div>
-            `
+                `
+            }
         })
     }
 
@@ -86,12 +94,18 @@ class Notes {
             const notes = getData('notes')
             const currentUser = getData('currentUser')
 
+            const userDate= new Date()
+            console.log(userDate);
+            const date = sortDate(noteDate.value)
+
+            console.log(noteDate.value);
+
             const newNote = {
                 author: currentUser,
                 important: noteImportant.checked,
                 completed: false,
                 text: noteText.value,
-                date: noteDate.value
+                date: date
             }
 
             const isFormValid = formValidate('_required')
@@ -136,8 +150,8 @@ class Notes {
             let value = this.noteSearch.value.toLowerCase()
             const notesName = document.querySelectorAll('.item__name')
             notesName.forEach(e => {
-                const itemContent = e.parentNode
-                e.innerText.toLowerCase().search(value) == -1
+                const itemContent = e.parentNode.parentNode
+                e.innerText.toLowerCase().search(value.trim()) == -1
                     ? itemContent.classList.add('d-none')
                     : itemContent.classList.remove('d-none')
             })
