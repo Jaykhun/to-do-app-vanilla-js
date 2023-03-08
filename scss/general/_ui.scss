@@ -59,16 +59,13 @@ select::-ms-expand {
     background-color: rgb(255, 233, 233) !important;
 }
 
-.important {
-    background-color: #dc4c64;
+
+.note-done{
+    text-decoration: line-through !important;
 }
 
 .done {
-    background-color: #14a44d;
-}
-
-.usual {
-    background-color: #3b71ca;
+    background-color: #14a44d !important;
 }
 
 a {

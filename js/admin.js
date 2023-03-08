@@ -50,9 +50,17 @@ class Admin {
         }
 
         const currentUser = getData('currentUser')
+        
         currentUser
             ? userName.innerHTML = currentUser
             : document.body.innerHTML = '<p class="text-center my-4 fw-bold">Please first sign in</p>'
+
+        const users = getData('users')
+        const user = users.find(user => user.login === currentUser)
+
+        user.isAdmin
+            ? ""
+            : document.body.innerHTML = `<p class="text-center my-4 fw-bold">You haven't access</p>`
 
         showPassword(showPasswordBtn, password, confirm)
         showPassword(changeShowBtn, changePass)

@@ -14,7 +14,7 @@ const showState = (message) => {
        min-width: 150px;
        max-width: 200px;
        padding: 10px;
-       top: 35px;
+       top: 20%;
        right: -300px;
        background: #fff;
        font-size: 18px;

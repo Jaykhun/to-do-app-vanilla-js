@@ -1,7 +1,10 @@
-const sortDate = (date) => {
-    console.log(date);
-    const data = date.split('-')
-    return new Date(data[0], data[1] - 1, data[2])
+const sortDate = () => {
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    today = `${mm}-${dd}-${yyyy}`
+    return today
 }
 
 export { sortDate }

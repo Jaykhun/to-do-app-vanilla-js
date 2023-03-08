@@ -11,6 +11,7 @@
         border-radius: 10px;
         transition: all 0.2s ease-in-out;
         padding: 8px;
+        cursor: pointer;
         &:hover {
             box-shadow: -10px 20px 40px -8px rgb(0 0 0 / 10%);
             transform: scale(1.01) translateX(10px);
@@ -18,6 +19,7 @@
 
         .item {
             display: flex;
+            
             &__name {
                 flex: 1 1 auto;
                 cursor: pointer;

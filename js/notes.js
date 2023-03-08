@@ -1,5 +1,5 @@
-import { addClass, createElement } from "./utils/domUtils.js"
-import { formValidate } from './utils/formUtils.js'
+import { addClass, createElement, removeClass } from "./utils/domUtils.js"
+import { formValidate, cancelFormItemsValue } from './utils/formUtils.js'
 import { redirectToPage, showState } from "./utils/stateUtils.js"
 import { clearData, getData, setData } from "./utils/storageUtils.js"
 import { sortDate } from "./utils/dateUtils.js"
@@ -14,7 +14,9 @@ class Notes {
         this.showNotes(this.notesBody)
         this.deleteNote()
         this.editNote()
+        this.completeNote()
         this.searchNote()
+        this.filterNote()
     }
 
     initElements() {
@@ -25,6 +27,7 @@ class Notes {
         this.noteSubmit = document.querySelector('#addBtn')
         this.noteSearch = document.querySelector('#search')
         this.notesBody = document.querySelector('#notesBody')
+        this.noteFilter = document.querySelector('.select')
         // * User
         this.userName = document.querySelector('.user_name')
         // * Menu
@@ -61,18 +64,18 @@ class Notes {
         }
     }
 
-    showNotes() {
+    showNotes(notesBody) {
         const notes = getData('notes')
         const users = getData('users')
         const currentUser = getData('currentUser')
         const user = users.find(user => user.login === currentUser)
-        this.notesBody.innerHTML = ''
+        notesBody.innerHTML = ''
         notes.forEach((note, index) => {
-            if(note.author === currentUser || user.isAdmin){
-                this.notesBody.innerHTML += `
-                <div data-index=${index} data-author=${note.author} class="notes__item item d-flex justify-content-between align-items-center p-2">
-                    <div class="item__content d-flex align-items-center gap-2">
-                        <span class="item__circle ${note.important ? 'bg-danger' : 'bg-warning'} ${note.completed ? 'bg-success' : ''}"></span>
+            if (note.author === currentUser || user.isAdmin) {
+                notesBody.innerHTML += `
+                <div data-index=${index} data-author=${note.author} data-action='complete' class="notes__item ${note.completed ? 'completed' : ''} ${note.important ? 'important' : ''} item d-flex justify-content-between align-items-center p-2">
+                    <div class="item__content d-flex align-items-center gap-2 pe-none ${note.completed ? 'note-done' : ''}"> 
+                        <span class="item__circle ${note.important ? 'bg-danger' : 'bg-warning'} ${note.completed ? 'done' : ''}"></span>
                         <p class="item__name">${note.date} / <span class="text-black fw-bold">${user.isAdmin ? note.author : ''}</span> </p>
                         <p class="item__name">${note.text}</p>
                     </div>
@@ -85,6 +88,10 @@ class Notes {
                 `
             }
         })
+
+        if (!notes.length) {
+            notesBody.innerHTML = `<div class="text-danger fw-bold text-center">There are no notes</div>`
+        }
     }
 
     addNote() {
@@ -93,12 +100,11 @@ class Notes {
         const addNote = () => {
             const notes = getData('notes')
             const currentUser = getData('currentUser')
+            let date
 
-            const userDate= new Date()
-            console.log(userDate);
-            const date = sortDate(noteDate.value)
-
-            console.log(noteDate.value);
+            !noteDate.value
+                ? date = sortDate()
+                : date = noteDate.value
 
             const newNote = {
                 author: currentUser,
@@ -114,7 +120,7 @@ class Notes {
                 ? (
                     notes.push(newNote),
                     setData('notes', notes),
-                    showNotes(),
+                    showNotes(this.notesBody),
                     cancelFormItemsValue([noteDate, noteText], [noteImportant]),
                     showState('Note added')
                 )
@@ -133,16 +139,31 @@ class Notes {
                 const notes = getData('notes')
                 const noteIndex = e.target.closest('.notes__item').getAttribute('data-index')
                 notes.splice(noteIndex, 1)
-                
+
                 showState('Successfully deleted')
                 setData('notes', notes)
-                this.showNotes()
+                this.showNotes(this.notesBody)
             }
         })
     }
 
     editNote() {
 
+    }
+
+    completeNote() {
+        this.notesBody.addEventListener('click', (e) => {
+            if (e.target.getAttribute('data-action') === 'complete') {
+                const notes = getData('notes')
+                const currentNote = e.target
+                const noteIndex = currentNote.getAttribute('data-index')
+                notes[noteIndex].completed = !notes[noteIndex].completed
+
+                showState('Successfully changed')
+                setData('notes', notes)
+                this.showNotes(this.notesBody)
+            }
+        })
     }
 
     searchNote() {
@@ -152,9 +173,42 @@ class Notes {
             notesName.forEach(e => {
                 const itemContent = e.parentNode.parentNode
                 e.innerText.toLowerCase().search(value.trim()) == -1
-                    ? itemContent.classList.add('d-none')
-                    : itemContent.classList.remove('d-none')
+                    ? addClass([itemContent], 'd-none')
+                    : removeClass([itemContent], 'd-none')
             })
+        })
+    }
+
+    filterNote() {
+        const addFunc = (note) => {
+            addClass([note], 'd-flex')
+            removeClass([note], 'd-none')
+        }
+
+        const delFunc = (note) => {
+            addClass([note], 'd-none')
+            removeClass([note], 'd-flex')
+        }
+
+        this.noteFilter.addEventListener('click', (e) => {
+            const notes = this.notesBody.children
+            for (const note of notes) {
+                switch (e.target.value) {
+                    case 'all':
+                        addFunc(note)
+                        break
+                    case 'done':
+                        note.classList.contains('completed')
+                            ? addFunc(note)
+                            : delFunc(note)
+                        break
+                    case 'important':
+                        note.classList.contains('important')
+                            ? addFunc(note)
+                            : delFunc(note)
+                        break
+                }
+            }
         })
     }
 }
