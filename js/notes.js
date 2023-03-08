@@ -27,6 +27,7 @@ class Notes {
         this.noteSubmit = document.querySelector('#addBtn')
         this.noteSearch = document.querySelector('#search')
         this.notesBody = document.querySelector('#notesBody')
+        this.notesForm = document.querySelector('.notes-form')
         this.noteFilter = document.querySelector('.select')
         // * User
         this.userName = document.querySelector('.user_name')
@@ -37,10 +38,10 @@ class Notes {
     }
 
     init() {
-        const { userName } = this
-        const currentUser = getData('currentUser')
+        const { userName, notesForm } = this
+        const currentUser = getData('users').find(user => user.login === getData('currentUser'))
         currentUser
-            ? userName.innerHTML = currentUser
+            ? userName.innerHTML = currentUser.login
             : document.body.innerHTML = '<p class="text-center my-4 fw-bold">Please first sign in</p>'
 
         if (!localStorage.getItem('notes')) {
@@ -56,8 +57,8 @@ class Notes {
     }
 
     checkUserPermissions() {
-        const currentUser = getData('users').filter(user => user.login === getData('currentUser'))
-        if (currentUser && currentUser[0].isAdmin) {
+        const currentUser = getData('users').find(user => user.login === getData('currentUser'))
+        if (currentUser && currentUser.isAdmin) {
             const link = createElement('a', this.userMenu, 'Admin Panel')
             addClass([link], 'dropdown-item')
             link.addEventListener('click', () => redirectToPage('admin'))
@@ -81,8 +82,8 @@ class Notes {
                     </div>
     
                     <div class="item__actions">
-                        <button class="btn btn-primary" data-action='edit'>Edit</button>
-                        <button class="btn btn-danger" data-action='delete'>Delete</button>
+                        ${user.canEdit ? `<button class="btn btn-primary" data-action='edit'>Edit</button>` : ''}
+                        ${user.canDelete ? `<button class="btn btn-danger" data-action='delete'>Delete</button>` : ''}
                     </div>
                 </div>
                 `

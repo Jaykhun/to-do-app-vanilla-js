@@ -4,8 +4,7 @@ const users = [
         password: 'admin',
         isAdmin: true,
         canEdit: true,
-        canDelete: true,
-        canAdd: true
+        canDelete: true
     }
 ]
 

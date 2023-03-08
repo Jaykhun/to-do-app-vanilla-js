@@ -87,8 +87,7 @@ class Admin {
                 password: password.value.trim(),
                 isAdmin: makeAdminBtn.checked,
                 canEdit: true,
-                canDelete: true,
-                canAdd: true
+                canDelete: true
             }
 
             const isUserExist = users.some(user => user.login === login.value.trim())
@@ -188,7 +187,7 @@ class Admin {
         avialableWrap.innerHTML = ''
         activeWrap.innerHTML = '';
 
-        ['canEdit', 'canDelete', 'canAdd'].forEach(permission => {
+        ['canEdit', 'canDelete'].forEach(permission => {
             if (currentUser[permission]) {
                 avialableWrap.innerHTML +=
                     `<button draggable="true" data-action="${permission}" data-permission="${currentUser[permission] ? 'active' : 'notActive'}" 
