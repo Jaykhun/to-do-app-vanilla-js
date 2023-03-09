@@ -1,8 +1,8 @@
+import { sortDate } from './utils/dateUtils.js'
 import { addClass, createElement, removeClass } from "./utils/domUtils.js"
-import { formValidate, cancelFormItemsValue } from './utils/formUtils.js'
+import { cancelFormItemsValue, formValidate } from './utils/formUtils.js'
 import { redirectToPage, showState } from "./utils/stateUtils.js"
 import { clearData, getData, setData } from "./utils/storageUtils.js"
-import { sortDate } from "./utils/dateUtils.js"
 
 class Notes {
     constructor() {
@@ -29,6 +29,13 @@ class Notes {
         this.notesBody = document.querySelector('#notesBody')
         this.notesForm = document.querySelector('.notes-form')
         this.noteFilter = document.querySelector('.select')
+        // * Edit Note
+        this.changeNote = document.querySelector('#changeText')
+        this.changeDate = document.querySelector('#changeDate')
+        this.changeModalClose = document.querySelector('#change-close')
+        this.changeMakeImportant = document.querySelector('#btn-important')
+        this.changeMakeCompleted = document.querySelector('#btn-complete')
+        this.chnageSubmit = document.querySelector('#change-save')
         // * User
         this.userName = document.querySelector('.user_name')
         // * Menu
@@ -38,7 +45,7 @@ class Notes {
     }
 
     init() {
-        const { userName, notesForm } = this
+        const { userName } = this
         const currentUser = getData('users').find(user => user.login === getData('currentUser'))
         currentUser
             ? userName.innerHTML = currentUser.login
@@ -82,7 +89,7 @@ class Notes {
                     </div>
     
                     <div class="item__actions">
-                        ${user.canEdit ? `<button class="btn btn-primary" data-action='edit'>Edit</button>` : ''}
+                        ${user.canEdit ? `<button class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal" data-action='edit'>Edit</button>` : ''}
                         ${user.canDelete ? `<button class="btn btn-danger" data-action='delete'>Delete</button>` : ''}
                     </div>
                 </div>
@@ -149,7 +156,55 @@ class Notes {
     }
 
     editNote() {
+        this.notesBody.addEventListener('click', (e) => {
+            if (e.target.getAttribute('data-action') === 'edit') {
+                const noteIndex = event.target.closest('.notes__item').getAttribute('data-index')
+                this.showUserNote(noteIndex)
+            }
+        })
+    }
 
+    showUserNote(index) {
+        this.notes = getData('notes')
+        this.currentNote = this.notes[index]
+
+        this.saveChanges(index)
+        this.showNote()
+    }
+
+    showNote() {
+        const { changeNote, changeDate, currentNote, changeMakeCompleted, changeMakeImportant } = this
+
+        changeDate.value = currentNote.date
+        changeNote.value = currentNote.text
+        changeMakeCompleted.checked = currentNote.completed
+        changeMakeImportant.checked = currentNote.important
+
+
+    }
+
+
+    saveChanges(index) {
+        const { chnageSubmit, changeDate, changeNote, changeMakeCompleted, changeMakeImportant, notes, notesBody, showNotes } = this
+
+
+        const handleSave = () => {
+            const isFormValid = formValidate('_change-required')
+
+            isFormValid
+                ? (
+                    notes[index].text = changeNote.value,
+                    notes[index].date = changeDate.value,
+                    notes[index].completed = changeMakeCompleted.checked,
+                    notes[index].important = changeMakeImportant.checked,
+                    setData('notes', notes),
+                    showNotes(notesBody),
+                    showState('Successfully changed')
+                )
+                : showState('In each field must be at least four words')
+        }
+
+        chnageSubmit.addEventListener('click', handleSave)
     }
 
     completeNote() {

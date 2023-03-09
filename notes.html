@@ -74,6 +74,56 @@
                 <section class="notes__body" id="notesBody"></section>
             </div>
         </div>
+        <!-- * Modal -->
+        <!-- * Modal -->
+        <div class="popup">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit Note</h5>
+                            <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="modalBody">
+                            <form>
+                                <!-- * Date input -->
+                                <div class="mb-4">
+                                    <input type="date" id="changeDate" class="form-control" />
+                                </div>
+
+                                <!-- * Text input -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="changeText" class="form-control _change-required"
+                                        placeholder="Change note" />
+                                </div>
+
+
+                                <!-- * Checkbox input -->
+                                <div class="d-flex mb-4 flex-lg-row flex-column">
+                                    <div class="form-check me-4">
+                                        <input class="form-check-input" type="checkbox" id="btn-important" />
+                                        <label class="form-check-label" for="btn-important">Make Important</label>
+                                    </div>
+
+                                    <div class="form-check me-4">
+                                        <input class="form-check-input" type="checkbox" id="btn-complete" />
+                                        <label class="form-check-label" for="btn-complete">Make Complate</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" id="change-close"
+                                data-mdb-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="change-save">Save note</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- * State Message -->
         <div class="status-message" id="status-message"></div>
     </div>
