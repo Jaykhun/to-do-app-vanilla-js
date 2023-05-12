@@ -1,5 +1,5 @@
 <p align="center">
-<!--       <img src="https://i.imgur.com/JrkfuHR.png"> -->
+      <img src="https://www.simpleimageresizer.com/_uploads/photos/dbc4057c/Screenshot_1_1_0.png">
 </p>
 
 <p>
@@ -12,9 +12,17 @@
 
 The To-Do app is a feature-rich web-based application that allows users to manage their tasks in an efficient and organized way. Built using HTML, CSS, SCSS, JavaScript, and MBootstrap, the app offers a seamless user experience with its intuitive interface and powerful functionality.
 
+<p align="center">
+      <img src="https://www.simpleimageresizer.com/_uploads/photos/dbc4057c/Screenshot_4_1_0.png">
+</p>
+
 The app begins with a simple and secure user login and registration system that ensures only authorized users can access their tasks. Once logged in, users can use the app's advanced search and filter features to quickly find and sort their tasks based on various criteria.
 
 The app also features an easy-to-use note management system that allows users to add, edit, and delete notes as needed. Each note can be assigned a status, indicating whether it is important, done, or in progress.
+
+<p align="center">
+      <img src="https://www.simpleimageresizer.com/_uploads/photos/dbc4057c/Screenshot_2_1_0.png">
+</p>
 
 One of the key features of the app is its admin panel, which allows administrators to manage users and their permissions. Admins can add new users, promote them to admin status, and configure their permission levels, including whether or not they can edit or delete their own notes.
 
