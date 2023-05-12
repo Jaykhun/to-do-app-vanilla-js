@@ -26,6 +26,10 @@ The app also features an easy-to-use note management system that allows users to
 
 One of the key features of the app is its admin panel, which allows administrators to manage users and their permissions. Admins can add new users, promote them to admin status, and configure their permission levels, including whether or not they can edit or delete their own notes.
 
+<p align="center">
+      <img src="https://www.simpleimageresizer.com/_uploads/photos/dbc4057c/Screenshot_3_2_0.png">
+</p>
+
 To enhance the user experience, the app also incorporates drag-and-drop functionality, making it easy for users to move and rearrange their tasks as needed. 
 
 ## Technologies Used
