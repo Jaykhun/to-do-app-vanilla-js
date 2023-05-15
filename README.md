@@ -33,7 +33,7 @@ One of the key features of the app is its admin panel, which allows administrato
 To enhance the user experience, the app also incorporates drag-and-drop functionality, making it easy for users to move and rearrange their tasks as needed. 
 
 <p align="center">
-      <img src="https://i.imgur.com/vxbGoft.png">
+      <img src="https://i.imgur.com/S2DFNXV.png">
 </p>
 
 ## Technologies Used
